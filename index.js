@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 // .env 쓰기위한
 const dotenv = require("dotenv");
 
+const userRoute = require("./routes/user");
+
 dotenv.config();
 
 // mongo db 연결하기
@@ -13,6 +15,8 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+app.use(express.json());
+app.use("/api/users", userRoute);
 
 const PORT = 5000;
 app.use("/", (req, res) => {
